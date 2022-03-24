@@ -1,20 +1,19 @@
 #!/usr/bin/env bb
+(ns lzd
+  (:require [babashka.fs :as fs]))
 
-(ns lzd)
-
-(defn show-help
-  []
+(defn help []
   (println 
    (->> ["lzd is a command line tool to help me with normal things"
          "---"
-         "  show-help: show this prompt"]
+         "  help: show this prompt"]
         (interpose "\n")
         (apply str))))
 
 (defn main
   [[cmd & args]]
   (cond
-    (= "show-help" cmd) (show-help))
-    :else (show-help))
+    (= "help" cmd) (help)
+    :else (println "run `lzd help` to see all options")))
 
-  (main *command-line-args*)
+(main *command-line-args*)
